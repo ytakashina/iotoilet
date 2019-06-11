@@ -14,19 +14,19 @@ class ToiletStatus(models.Model):
 
 
 class ToiletStatusType(models.Model):
-    toilet_status_type_name = models.CharField("個室状況名称", max_length=100)
-    toilet_status_type_no = models.IntegerField("個室状況NO", default=-1)
+    toilet_status_type_name = models.CharField("個室状況名称", max_length=20)
+    toilet_status_type_no = models.IntegerField("個室状況番号", default=-1)
 
     def __str__(self):
-        return self.toilet_status_type_no
+        return self.toilet_status_type_name
 
 
 class Map(models.Model):
-    map_name = models.CharField("地図名称", max_length=100)
-    map_no = models.IntegerField("地図NO", default=-1)
+    map_name = models.CharField("地図名称", max_length=20)
+    map_no = models.IntegerField("地図番号", default=-1)
 
     def __str__(self):
-        return self.map_no
+        return self.map_name
 
 
 class Floor(models.Model):
@@ -34,7 +34,7 @@ class Floor(models.Model):
     floor_no = models.IntegerField("フロア番号")
 
     def __str__(self):
-        return self.floor_no
+        return self.floor_name
 
 
 class User(models.Model):
@@ -103,6 +103,12 @@ class SexRoomType(models.Model):
     room_type_id = models.ForeignKey("RoomType", on_delete=models.CASCADE)
     sex_id = models.ForeignKey("Sex", on_delete=models.CASCADE)
 
+    class Meta:
+        unique_together = (('room_type_id', 'sex_id'),)
+
+    def __str__(self):
+        return self.room_type_id
+
 
 class RoomType(models.Model):
     room_type_name = models.CharField("個室タイプ", max_length=20)
@@ -110,6 +116,7 @@ class RoomType(models.Model):
 
     def __str__(self):
             return self.room_type_name
+
 
 class Room(models.Model):
     room_type_id = models.ForeignKey('SexRoomType', on_delete=models.CASCADE)
@@ -131,15 +138,6 @@ class Toilet(models.Model):
     def __str__(self):
         return self.toilet_name
 
-class SexRoomType(models.Model):
-    room_type_id = models.ForeignKey('RoomType', on_delete=models.CASCADE)
-    sex_id = models.ForeignKey('Sex', on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = (('room_type_id', 'sex_id'),)
-
-    def __str__(self):
-        return self.room_type_id
 
 class ToiletStatsuHist(models.Model):
     toilet_name = models.CharField("トイレ名", max_length=20)
