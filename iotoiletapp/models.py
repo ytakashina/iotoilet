@@ -1,27 +1,29 @@
 from django.db import models
 
-<<<<<<< HEAD
-# Create your models here.
 
 class ToiletStatus(models.Model):
-
     timestamp = models.DateTimeField("登録時刻")
-    toilet_id = models.CharField("個室ID", max_length=20)
     toilet_status_type_id = models.ForeignKey('toilet_status_type_id', on_delete=models.CASCADE)
 
     def __str__(self):
-        return [self.timestamp, self.toilet_id]
+        return self.timestamp
 
 
 class ToiletStatusType(models.Model):
-
-    toilet_status_type_id = models.CharField("個室状況ID", max_length=20)
     toilet_status_type_name = models.CharField("個室状況名称", max_length=100)
-    toilet_status_type_name = models.IntegerField("個室状況NO", default=-1)
+    toilet_status_type_no = models.IntegerField("個室状況NO", default=-1)
 
     def __str__(self):
-        return self.toilet_status_type_id
-=======
+        return self.toilet_status_type_no
+
+
+class Map(models.Model):
+    map_name = models.CharField("地図名称", max_length=100)
+    map_no = models.IntegerField("地図NO", default=-1)
+
+    def __str__(self):
+        return self.map_no
+
 
 class Floor(models.Model):
     floor_name = models.CharField("フロア名", max_length=20)
@@ -64,4 +66,3 @@ class Sex(models.Model):
   
     def __str__(self):
         return self.sex_name
->>>>>>> master
