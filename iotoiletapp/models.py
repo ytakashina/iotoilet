@@ -1,16 +1,13 @@
 from django.db import models
 
-# Create your models here.
 
 class Floor(models.Model):
-    floor_name = (
-        (1, "25階"),
-        (2, "26階"),
-        (3, "27階"),
-        (4, "28階"),
-        (5, "29階"),
-    )
-    floor_no = models.IntegerField("フロアNo.")
+    floor_name = models.CharField("フロア名", max_length=20)
+    floor_no = models.IntegerField("フロア番号")
+
+    def __str__(self):
+        return self.floor_no
+
 
 class User(models.Model):
     sex = models.ForeignKey('性別', on_delete=models.CASCADE)
@@ -21,3 +18,27 @@ class User(models.Model):
 
     def __str__(self):
         return self.user_name
+
+
+class SensorStatusType(models.Model):
+    sensor_status_type_name = models.CharField("センサー状態タイプ名", max_length=20)
+    sensor_status_type_no = models.IntegerField("センサー状態タイプ番号", default=-1)
+
+    def __str__(self):
+        return self.sensor_status_type_name
+
+
+class SensorType(models.Model):
+    sensor_type_name = models.CharField("センサータイプ名", max_length=20)
+    sensor_type_no = models.IntegerField("センサータイプ番号", default=-1)
+
+    def __str__(self):
+        return self.sensor_type_name
+
+
+class Sex(models.Model):
+    sex_name = models.CharField("性別名", max_length=20)
+    sex_no = models.IntegerField("性別番号", default=1)
+  
+    def __str__(self):
+        return self.sex_name
