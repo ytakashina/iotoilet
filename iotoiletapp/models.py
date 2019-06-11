@@ -131,3 +131,32 @@ class Toilet(models.Model):
 
     def __str__(self):
         return self.toilet_name
+
+class SexRoomType(models.Model):
+    room_type_id = models.ForeignKey('RoomType', on_delete=models.CASCADE)
+    sex_id = models.ForeignKey('Sex', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = (('room_type_id', 'sex_id'),)
+
+    def __str__(self):
+        return self.room_type_id
+
+class ToiletStatsuHist(models.Model):
+    toilet_name = models.CharField("トイレ名", max_length=20)
+    toilet_no = models.IntegerField("トイレ番号", default=1)
+    is_wheelchair = models.IntegerField("車いす", default=1)
+    room_name = models.CharField("個室名", max_length=20)
+    room_no = models.IntegerField("個室番号", default=1)
+    floor_name = models.CharField("フロア名", max_length=20)
+    floor_no = models.IntegerField("フロア番号")
+    sex_name = models.CharField("性別名", max_length=20)
+    sex_no = models.IntegerField("性別番号", default=1)
+    map_name = models.CharField("地図名称", max_length=100)
+    map_no = models.IntegerField("地図NO", default=-1)
+    toilet_status_type_name = models.CharField("個室状況名称", max_length=100)
+    toilet_status_type_no = models.IntegerField("個室状況NO", default=-1)
+    timestamp = models.DateTimeField("登録時刻")
+
+    def __str__(self):
+        return self.toilet_name
