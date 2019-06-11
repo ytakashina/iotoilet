@@ -36,9 +36,36 @@ class SensorType(models.Model):
         return self.sensor_type_name
 
 
+class Sensor(models.Model):
+    sensor_name = models.CharField("センサー名", max_length=20)
+    sensor_no = models.IntegerField("センサー番号", default=-1)
+    sensor_type_id = models.ForeignKey('SensorType', on_delete=models.CASCADE)
+    sensor_status_type_id = models.ForeignKey('SensorStatusType', on_delete=models.CASCADE)
+    toilet_id = models.ForeignKey('Toilet', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.sensor_name
+
+
+class SensorData(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    sensor_id = models.ForeignKey('Sensor', on_delete=models.CASCADE)
+    sensor_data1 = models.CharField("センサーデータ1", max_length=20)
+    sensor_data2 = models.CharField("センサーデータ2", max_length=20)
+    sensor_data3 = models.CharField("センサーデータ3", max_length=20)
+    sensor_data4 = models.CharField("センサーデータ4", max_length=20)
+    sensor_data5 = models.CharField("センサーデータ5", max_length=20)
+
+    class Meta:
+        unique_together = (('timestamp', 'sensor_id'),)
+
+    def __str__(self):
+        return self.sensor_id
+
+
 class Sex(models.Model):
     sex_name = models.CharField("性別名", max_length=20)
     sex_no = models.IntegerField("性別番号", default=1)
-  
+
     def __str__(self):
         return self.sex_name
