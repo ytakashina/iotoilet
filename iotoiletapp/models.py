@@ -93,7 +93,7 @@ class SensorData(models.Model):
 
 class Sex(models.Model):
     sex_name = models.CharField("性別名", max_length=20)
-    sex_no = models.IntegerField("性別番号", default=1)
+    sex_no = models.IntegerField("性別番号", default=-1)
 
     def __str__(self):
         return self.sex_name
@@ -112,7 +112,7 @@ class SexRoomType(models.Model):
 
 class RoomType(models.Model):
     room_type_name = models.CharField("個室タイプ", max_length=20)
-    room_type_no = models.IntegerField("個室タイプ番号", default=1)
+    room_type_no = models.IntegerField("個室タイプ番号", default=-1)
 
     def __str__(self):
             return self.room_type_name
@@ -122,7 +122,7 @@ class Room(models.Model):
     room_type_id = models.ForeignKey('SexRoomType', on_delete=models.CASCADE)
     floor_id = models.ForeignKey('Floor', on_delete=models.CASCADE)
     room_name = models.CharField("個室名", max_length=20)
-    room_no = models.IntegerField("個室番号", default=1)
+    room_no = models.IntegerField("個室番号", default=-1)
 
     def __str__(self):
         return self.room_name
@@ -132,7 +132,7 @@ class Toilet(models.Model):
     room_id = models.ForeignKey('Room', on_delete=models.CASCADE)
     map_id = models.ForeignKey('Map', on_delete=models.CASCADE)
     toilet_name = models.CharField("トイレ名", max_length=20)
-    toilet_no = models.IntegerField("トイレ番号", default=1)
+    toilet_no = models.IntegerField("トイレ番号", default=-1)
     is_wheelchair = models.IntegerField("車いす", default=1)
 
     def __str__(self):
@@ -141,18 +141,18 @@ class Toilet(models.Model):
 
 class ToiletStatsuHist(models.Model):
     toilet_name = models.CharField("トイレ名", max_length=20)
-    toilet_no = models.IntegerField("トイレ番号", default=1)
+    toilet_no = models.IntegerField("トイレ番号", default=-1)
     is_wheelchair = models.IntegerField("車いす", default=1)
     room_name = models.CharField("個室名", max_length=20)
-    room_no = models.IntegerField("個室番号", default=1)
+    room_no = models.IntegerField("個室番号", default=-1)
     floor_name = models.CharField("フロア名", max_length=20)
     floor_no = models.IntegerField("フロア番号")
     sex_name = models.CharField("性別名", max_length=20)
     sex_no = models.IntegerField("性別番号", default=1)
-    map_name = models.CharField("地図名称", max_length=100)
-    map_no = models.IntegerField("地図NO", default=-1)
-    toilet_status_type_name = models.CharField("個室状況名称", max_length=100)
-    toilet_status_type_no = models.IntegerField("個室状況NO", default=-1)
+    map_name = models.CharField("地図名称", max_length=20)
+    map_no = models.IntegerField("地図番号", default=-1)
+    toilet_status_type_name = models.CharField("個室状況名称", max_length=20)
+    toilet_status_type_no = models.IntegerField("個室状況番号", default=-1)
     timestamp = models.DateTimeField("登録時刻")
 
     def __str__(self):
