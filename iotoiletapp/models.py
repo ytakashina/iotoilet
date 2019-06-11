@@ -115,7 +115,8 @@ class RoomType(models.Model):
     room_type_no = models.IntegerField("個室タイプ番号", default=-1)
 
     def __str__(self):
-            return self.room_type_name
+        return self.room_type_name
+
 
 
 class Room(models.Model):
