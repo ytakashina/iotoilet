@@ -95,6 +95,11 @@ class Sex(models.Model):
         return self.sex_name
 
 
+class SexRoomType(models.Model):
+    room_type_id = models.ForeignKey("RoomType", on_delete=models.CASCADE)
+    sex_id = models.ForeignKey("Sex", on_delete=models.CASCADE)
+
+
 class Room(models.Model):
     room_type_id = models.ForeignKey('Sex_room_type', on_delete=models.CASCADE)
     floor_id = models.ForeignKey('Floor', on_delete=models.CASCADE)
