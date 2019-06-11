@@ -4,7 +4,7 @@ from django.db import models
 class ToiletStatus(models.Model):
     timestamp = models.DateTimeField("登録時刻")
     toilet_id = models.ForeignKey('Toilet', on_delete=models.CASCADE)
-    toilet_status_type_id = models.ForeignKey('toilet_status_type_id', on_delete=models.CASCADE)
+    toilet_status_type_id = models.ForeignKey('ToiletStatusType', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = (('timestamp', 'toilet_id'),)
@@ -105,7 +105,7 @@ class SexRoomType(models.Model):
 
 
 class Room(models.Model):
-    room_type_id = models.ForeignKey('Sex_room_type', on_delete=models.CASCADE)
+    room_type_id = models.ForeignKey('SexRoomType', on_delete=models.CASCADE)
     floor_id = models.ForeignKey('Floor', on_delete=models.CASCADE)
     room_name = models.CharField("個室名", max_length=20)
     room_no = models.IntegerField("個室番号", default=1)
