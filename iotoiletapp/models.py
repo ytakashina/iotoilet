@@ -13,8 +13,8 @@ class Floor(models.Model):
     floor_no = models.IntegerField("フロアNo.")
 
 class User(models.Model):
-    sex = models.ForeignKey('Sex', on_delete=models.CASCADE)
-    floor_id = models.ForeignKey('Floor', on_delete=models.CASCADE)
+    sex = models.ForeignKey('性別', on_delete=models.CASCADE)
+    floor_id = models.ForeignKey('フロアID', on_delete=models.CASCADE)
     user_id = models.CharField("ユーザID", max_length=20)
     password = models.CharField("パスワード", max_length=20)
     user_name = models.CharField("ユーザ名", max_length=20)
