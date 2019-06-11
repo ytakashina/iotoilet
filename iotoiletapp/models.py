@@ -39,7 +39,7 @@ class SensorType(models.Model):
 class Sex(models.Model):
     sex_name = models.CharField("性別名", max_length=20)
     sex_no = models.IntegerField("性別番号", default=1)
-  
+
     def __str__(self):
         return self.sex_name
 
@@ -52,3 +52,14 @@ class Room(models.Model):
 
     def __str__(self):
         return self.room_name
+
+
+class Toilet(models.Model):
+    room_id = models.ForeignKey('Room', on_delete=models.CASCADE)
+    map_id = models.ForeignKey('Map', on_delete=models.CASCADE)
+    toilet_name = models.CharField("トイレ名", max_length=20)
+    toilet_no = models.IntegerField("トイレ番号", default=1)
+    is_wheelchair = models.IntegerField("車いす", default=1)
+
+    def __str__(self):
+        return self.toilet_name
