@@ -42,3 +42,10 @@ class Sex(models.Model):
   
     def __str__(self):
         return self.sex_name
+
+class Sex_room_type(models.Model):
+    room_type_id = models.ForeignKey("ルームタイプID", on_delete=models.CASCADE)
+    sex_id = models.ForeignKey("性別ID", on_delete=models.CASCADE)
+
+        # def __str__(self):
+        # return self.sex_name
