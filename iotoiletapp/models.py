@@ -1,7 +1,23 @@
 from django.db import models
 
 
-# Create your models here.
+class Floor(models.Model):
+    floor_name = models.CharField("フロア名", max_length=20)
+    floor_no = models.IntegerField("フロア番号")
+
+    def __str__(self):
+        return self.floor_no
+
+
+class User(models.Model):
+    sex = models.ForeignKey('性別', on_delete=models.CASCADE)
+    floor_id = models.ForeignKey('フロアID', on_delete=models.CASCADE)
+    user_id = models.CharField("ユーザID", max_length=20)
+    password = models.CharField("パスワード", max_length=20)
+    user_name = models.CharField("ユーザ名", max_length=20)
+
+    def __str__(self):
+        return self.user_name
 
 
 class SensorStatusType(models.Model):
@@ -22,7 +38,7 @@ class SensorType(models.Model):
 
 class Sex(models.Model):
     sex_name = models.CharField("性別名", max_length=20)
-    sex_no = models.IntegerField("性別", default=1)
+    sex_no = models.IntegerField("性別番号", default=1)
   
     def __str__(self):
         return self.sex_name
