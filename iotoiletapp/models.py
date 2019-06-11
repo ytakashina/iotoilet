@@ -3,7 +3,11 @@ from django.db import models
 
 class ToiletStatus(models.Model):
     timestamp = models.DateTimeField("登録時刻")
+    toilet_id = models.ForeignKey('Toilet', on_delete=models.CASCADE)
     toilet_status_type_id = models.ForeignKey('toilet_status_type_id', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = (('timestamp', 'toilet_id'),)
 
     def __str__(self):
         return self.timestamp
