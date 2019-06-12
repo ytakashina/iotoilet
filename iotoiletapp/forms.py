@@ -1,5 +1,5 @@
 from django import forms
-from iotoiletapp.models import Floor, Sex
+from iotoiletapp.models import Floor, Sex, Room
 
 
 class IotoiletappForm(forms.ModelForm):

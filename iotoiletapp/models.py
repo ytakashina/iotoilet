@@ -76,7 +76,7 @@ class Sensor(models.Model):
 
 
 class SensorData(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField()
     sensor_id = models.ForeignKey('Sensor', on_delete=models.PROTECT)
     value1 = models.CharField("センサー値1", max_length=20)
     value2 = models.CharField("センサー値2", max_length=20)
