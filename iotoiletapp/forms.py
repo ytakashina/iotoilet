@@ -1,16 +1,18 @@
 from django import forms
-from iotoiletapp.models import Floor, Sex
 
+SEX_CHOICES = [
+    (1, '男'),
+    (2, '女'),
+]
 
-class IotoiletappForm(forms.ModelForm):
+FLOOR_CHOICES = [
+    (1, '25階'),
+    (2, '26階'),
+    (3, '27階'),
+    (4, '28階'),
+    (5, '29階'),
+]
 
-    class Meta:
-        model = Room
-        fields = ('user_name', 'email', 'sex', 'job', 'inquiry_text')
-        widgets = {
-            'user_name': forms.TextInput(attrs={"class": "form-control"}),
-            'email': forms.EmailInput(attrs={"class": "form-control"}),
-            'sex': forms.RadioSelect(),
-            'job': forms.Select(attrs={"class": "form-control"}),
-            'inquiry_text': forms.Textarea(attrs={"class": "form-control", "cols": "10",  "rows": "4"}),
-        }
+class IotoiletappForm(forms.Form):
+    sex = forms.ChoiceField(label='性別', choices=SEX_CHOICES, initial=1)
+    floor_name = forms.ChoiceField(label='フロア', choices=FLOOR_CHOICES, initial=1)
