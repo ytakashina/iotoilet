@@ -78,11 +78,11 @@ class Sensor(models.Model):
 class SensorData(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     sensor_id = models.ForeignKey('Sensor', on_delete=models.CASCADE)
-    sensor_data1 = models.CharField("センサーデータ1", max_length=20)
-    sensor_data2 = models.CharField("センサーデータ2", max_length=20)
-    sensor_data3 = models.CharField("センサーデータ3", max_length=20)
-    sensor_data4 = models.CharField("センサーデータ4", max_length=20)
-    sensor_data5 = models.CharField("センサーデータ5", max_length=20)
+    value1 = models.CharField("センサー値1", max_length=20)
+    value2 = models.CharField("センサー値2", max_length=20)
+    value3 = models.CharField("センサー値3", max_length=20)
+    value4 = models.CharField("センサー値4", max_length=20)
+    value5 = models.CharField("センサー値5", max_length=20)
 
     class Meta:
         unique_together = (('timestamp', 'sensor_id'),)
@@ -135,6 +135,7 @@ class Toilet(models.Model):
     toilet_name = models.CharField("トイレ名", max_length=20)
     toilet_no = models.IntegerField("トイレ番号", default=-1)
     is_wheelchair = models.IntegerField("車いす", default=1)
+    brightness_threshold = models.IntegerField("明るさ閾値", default=1)
 
     def __str__(self):
         return self.toilet_name
