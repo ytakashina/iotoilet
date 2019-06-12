@@ -1,5 +1,5 @@
 from django.urls import path
-from inquiry import views
+from iotoiletapp import views
 
 urlpatterns = [
     path('', views.index, name='index'),
