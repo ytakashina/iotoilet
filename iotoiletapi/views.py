@@ -4,7 +4,7 @@ from django.shortcuts import render
 import django_filters
 from rest_framework import viewsets, filters
 
-from .models import SensorData
+from iotoiletapp.models import SensorData
 from .serializer import SensorDataSerializer
 
 
