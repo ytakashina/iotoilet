@@ -16,19 +16,19 @@ select
     SD.value1
 from
     iotoiletapp_toilet as T
-inner join iotoiletapp_room as R
+left outer join iotoiletapp_room as R
     on T.room_id_id = R.id
-inner join iotoiletapp_roomtype as RT
+left outer join iotoiletapp_roomtype as RT
     on R.room_type_id_id = RT.id
-inner join iotoiletapp_floor as F
+left outer join iotoiletapp_floor as F
     on R.floor_id_id = F.id
-inner join iotoiletapp_toiletstatus as TS
+left outer join iotoiletapp_toiletstatus as TS
     on T.id = TS.toilet_id_id
-inner join iotoiletapp_toiletstatustype as TST
+left outer join iotoiletapp_toiletstatustype as TST
     on TS.toilet_status_type_id_id = TST.id
-inner join iotoiletapp_sensor as S
+left outer join iotoiletapp_sensor as S
     on T.id = S.toilet_id_id
-inner join iotoiletapp_sensordata as SD
+left outer join iotoiletapp_sensordata as SD
     on S.id = SD.sensor_id_id
 """
 
