@@ -10,7 +10,7 @@ class ToiletStatus(models.Model):
         unique_together = (('timestamp', 'toilet_id'),)
 
     def __str__(self):
-        return self.timestamp
+        return str(self.timestamp)
 
 
 class ToiletStatusType(models.Model):
@@ -78,17 +78,17 @@ class Sensor(models.Model):
 class SensorData(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     sensor_id = models.ForeignKey('Sensor', on_delete=models.PROTECT)
-    value1 = models.CharField("センサー値1", max_length=20)
-    value2 = models.CharField("センサー値2", max_length=20)
-    value3 = models.CharField("センサー値3", max_length=20)
-    value4 = models.CharField("センサー値4", max_length=20)
-    value5 = models.CharField("センサー値5", max_length=20)
+    value1 = models.CharField("センサー値1", max_length=20, blank=True)
+    value2 = models.CharField("センサー値2", max_length=20, blank=True)
+    value3 = models.CharField("センサー値3", max_length=20, blank=True)
+    value4 = models.CharField("センサー値4", max_length=20, blank=True)
+    value5 = models.CharField("センサー値5", max_length=20, blank=True)
 
     class Meta:
         unique_together = (('timestamp', 'sensor_id'),)
 
     def __str__(self):
-        return self.sensor_id
+        return str(self.sensor_id)
 
 
 class Sex(models.Model):
