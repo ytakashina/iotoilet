@@ -1,4 +1,6 @@
-from django.urls import path
+from rest_framework import routers
+from .views import SensorDataViewSet
 
-urlpatterns = [
-]
+
+router = routers.DefaultRouter()
+router.register(r'sensordatas', SensorDataViewSet)
