@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import ToiletStatusType, Map, Floor, User, SensorStatusType, \
-    SensorType, Sensor, Sex, SexRoomType, RoomType, Room, Toilet
+    SensorType, Sensor, Sex, SexRoomType, RoomType, Room, Toilet, SensorData
 
 admin.site.register(ToiletStatusType)
 admin.site.register(Map)
@@ -14,4 +14,5 @@ admin.site.register(SexRoomType)
 admin.site.register(RoomType)
 admin.site.register(Room)
 admin.site.register(Toilet)
+admin.site.register(SensorData)
 # Register your models here.
