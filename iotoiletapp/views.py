@@ -1,5 +1,5 @@
 from django.db import transaction, connection
-from django.shortcuts import render, get_object_or_404, redirect  # 追加
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from iotoiletapp.models import Toilet, Room, ToiletStatus
 from iotoiletapp.forms import IotoiletappForm
@@ -25,7 +25,7 @@ def index(request):
     'inner join iotoiletapp_sensordata as SD ' +\
     'on S.id = SD.sensor_id_id'
     cursor.execute(sql, {})
-    toilet_list = cur.fetchall()
+    toilet_list = cursor.fetchall()
     return render(request, 'iotoiletapp/index.html', {'toilet_list': toilet_list})
 
 
