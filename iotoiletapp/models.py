@@ -120,7 +120,7 @@ class RoomType(models.Model):
 
 
 class Room(models.Model):
-    room_type_id = models.ForeignKey('SexRoomType', on_delete=models.SET_NULL, null=True)
+    room_type_id = models.ForeignKey('RoomType', on_delete=models.SET_NULL, null=True)
     floor_id = models.ForeignKey('Floor', on_delete=models.PROTECT)
     room_name = models.CharField("個室名", max_length=20)
     room_no = models.IntegerField("個室番号", default=-1)
