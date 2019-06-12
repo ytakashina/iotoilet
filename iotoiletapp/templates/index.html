@@ -22,11 +22,11 @@
                 </tr>
             </thead>
             <tbody>
-                {% for toilet in 開閉状況_list %}
+                {% for available_toilet in available_toilets %}
                 <tr>
-                    <th>{{toilet.フロア}}</th>
-                    <td>{{toilet.男性}}</td>
-                    <td>{{toilet.女性}}</td>
+                    <th>{{ available_toilet[0] }}</th>
+                    <td>{{ savailable_toilet[1] }}</td>
+                    <td>{{ available_toilet[2] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
