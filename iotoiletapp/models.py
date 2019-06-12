@@ -3,8 +3,8 @@ from django.db import models
 
 class ToiletStatus(models.Model):
     timestamp = models.DateTimeField("登録時刻")
-    toilet_id = models.ForeignKey('Toilet', on_delete=models.CASCADE)
-    toilet_status_type_id = models.ForeignKey('ToiletStatusType', on_delete=models.CASCADE)
+    toilet_id = models.ForeignKey('Toilet', on_delete=models.PROTECT)
+    toilet_status_type_id = models.ForeignKey('ToiletStatusType', on_delete=models.PROTECT)
 
     class Meta:
         unique_together = (('timestamp', 'toilet_id'),)
@@ -38,8 +38,8 @@ class Floor(models.Model):
 
 
 class User(models.Model):
-    sex = models.ForeignKey('Sex', on_delete=models.CASCADE)
-    floor_id = models.ForeignKey('Floor', on_delete=models.CASCADE)
+    sex = models.ForeignKey('Sex', on_delete=models.SET_NULL, null=True)
+    floor_id = models.ForeignKey('Floor', on_delete=models.SET_NULL, null=True)
     user_id = models.CharField("ユーザID", max_length=20)
     password = models.CharField("パスワード", max_length=20)
     user_name = models.CharField("ユーザ名", max_length=20)
@@ -67,9 +67,9 @@ class SensorType(models.Model):
 class Sensor(models.Model):
     sensor_name = models.CharField("センサー名", max_length=20)
     sensor_no = models.IntegerField("センサー番号", default=-1)
-    sensor_type_id = models.ForeignKey('SensorType', on_delete=models.CASCADE)
-    sensor_status_type_id = models.ForeignKey('SensorStatusType', on_delete=models.CASCADE)
-    toilet_id = models.ForeignKey('Toilet', on_delete=models.CASCADE)
+    sensor_type_id = models.ForeignKey('SensorType', on_delete=models.SET_NULL, null=True)
+    sensor_status_type_id = models.ForeignKey('SensorStatusType', on_delete=models.SET_NULL, null=True)
+    toilet_id = models.ForeignKey('Toilet', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.sensor_name
@@ -77,7 +77,7 @@ class Sensor(models.Model):
 
 class SensorData(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
-    sensor_id = models.ForeignKey('Sensor', on_delete=models.CASCADE)
+    sensor_id = models.ForeignKey('Sensor', on_delete=models.PROTECT)
     value1 = models.CharField("センサー値1", max_length=20)
     value2 = models.CharField("センサー値2", max_length=20)
     value3 = models.CharField("センサー値3", max_length=20)
@@ -120,8 +120,8 @@ class RoomType(models.Model):
 
 
 class Room(models.Model):
-    room_type_id = models.ForeignKey('SexRoomType', on_delete=models.CASCADE)
-    floor_id = models.ForeignKey('Floor', on_delete=models.CASCADE)
+    room_type_id = models.ForeignKey('SexRoomType', on_delete=models.SET_NULL, null=True)
+    floor_id = models.ForeignKey('Floor', on_delete=models.PROTECT)
     room_name = models.CharField("個室名", max_length=20)
     room_no = models.IntegerField("個室番号", default=-1)
 
@@ -130,8 +130,8 @@ class Room(models.Model):
 
 
 class Toilet(models.Model):
-    room_id = models.ForeignKey('Room', on_delete=models.CASCADE)
-    map_id = models.ForeignKey('Map', on_delete=models.CASCADE)
+    room_id = models.ForeignKey('Room', on_delete=models.PROTECT)
+    map_id = models.ForeignKey('Map', on_delete=models.SET_NULL, null=True)
     toilet_name = models.CharField("トイレ名", max_length=20)
     toilet_no = models.IntegerField("トイレ番号", default=-1)
     is_wheelchair = models.IntegerField("車いす", default=1)
