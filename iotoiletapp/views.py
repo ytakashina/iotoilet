@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect #追加
 from django.http import HttpResponse
-from iotoiletapp.models import Iotoiletapp
+from iotoiletapp.models import Toilet, Room, ToiletStatus
 from iotoiletapp.forms import IotoiletappForm
 
 #一覧
 def index(request):
-    toilet_list = Iotoiletapp.objects.all().order_by('floor_no') # 値を取得
+    toilet_status = ToiletStatus.objects.row().order_by('floor_no') # 値を取得
     return render(request, 'iotoiletapp/index.html', {'toilet_list': toilet_list})
     # render : 書き出し request : クライアントからのリクエスト
     # index.htmlに辞書でデータを渡す
