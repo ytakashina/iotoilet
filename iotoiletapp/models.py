@@ -10,7 +10,7 @@ class ToiletStatus(models.Model):
         unique_together = (('timestamp', 'toilet_id'),)
 
     def __str__(self):
-        return self.timestamp
+        return str(self.timestamp)
 
 
 class ToiletStatusType(models.Model):
@@ -88,7 +88,7 @@ class SensorData(models.Model):
         unique_together = (('timestamp', 'sensor_id'),)
 
     def __str__(self):
-        return self.sensor_id
+        return str(self.sensor_id)
 
 
 class Sex(models.Model):
