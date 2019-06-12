@@ -36,8 +36,9 @@ inner join iotoiletapp_sensordata as SD
 def index(request):
     with psycopg2.connect(CONN) as conn, conn.cursor() as cur:
         cur.execute(SQL_AVAILABLE_TOILETS, {})
-        toilet_list = cur.fetchall()
-    return render(request, 'iotoiletapp/index.html', {'toilet_list': toilet_list})
+        available_toilets = cur.fetchall()
+    available_toilets = available_toilets or [(i, i + 1, i + 2) for i in range(10)]
+    return render(request, 'iotoiletapp/index.html', {'available_toilets': available_toilets})
 
 
 def search(request):
