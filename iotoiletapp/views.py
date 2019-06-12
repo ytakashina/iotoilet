@@ -43,7 +43,7 @@ def index(request):
 
 def search(request):
     form = IotoiletappForm(request.GET or None)
-    return render(request, 'iotoiletapp/forms.html', {"form": form})
+    return render(request, 'iotoiletapp/search.html', {"form": form})
 
 # def detail(request, id=None):
 #     toilet = Iotoiletapp.objects.get(floor_no=floor_no)
