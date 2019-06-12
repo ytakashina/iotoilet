@@ -13,6 +13,7 @@ FLOOR_CHOICES = [
     (5, '29階'),
 ]
 
+
 class IotoiletappForm(forms.Form):
     sex = forms.ChoiceField(label='性別', choices=SEX_CHOICES, initial=1)
     floor_name = forms.ChoiceField(label='フロア', choices=FLOOR_CHOICES, initial=1)
