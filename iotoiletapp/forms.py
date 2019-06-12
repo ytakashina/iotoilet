@@ -1,5 +1,4 @@
 from django import forms
-from iotoiletapp.models import Floor, Sex, Room
 
 SEX_CHOICES = [
     (1, '男'),
