@@ -102,12 +102,13 @@ class Sex(models.Model):
 class SexRoomType(models.Model):
     room_type_id = models.ForeignKey("RoomType", on_delete=models.CASCADE)
     sex_id = models.ForeignKey("Sex", on_delete=models.CASCADE)
+    sex_room_type_name = models.CharField("性別個室対応名", max_length=20, null=True)
 
     class Meta:
         unique_together = (('room_type_id', 'sex_id'),)
 
     def __str__(self):
-        return self.room_type_id
+        return self.sex_room_type_name
 
 
 class RoomType(models.Model):
@@ -116,7 +117,6 @@ class RoomType(models.Model):
 
     def __str__(self):
         return self.room_type_name
-
 
 
 class Room(models.Model):
