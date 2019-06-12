@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import SensorData
+from iotoiletapp.models import SensorData
 
 
-@admin.register(SensorData)
-class SensorDataAdmin(admin.ModelAdmin):
-    pass
+# @admin.register(SensorData)
+# class SensorDataAdmin(admin.ModelAdmin):
+#     pass
