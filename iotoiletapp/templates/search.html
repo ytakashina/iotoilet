@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}検索条件{% endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <h3 class="page-header">フロアと性別を入力してください</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <form action="{% url 'index' %}" method="get" 　name="search_form">
+      {% csrf_token %}
+      {{ form }}
+      <br>
+
+      <p>フロア:
+        <div id="job_error" class="error"></div><select name="job" id="job_select">
+          <option value=""></option>
+          <option value="1">25階</option>
+          <option value="2">26階</option>
+          <option value="3">27階</option>
+          <option value="4">28階</option>
+          <option value="5">29階</option>
+        </select>
+      </p>
+
+      <p>性別:<input type="radio" name="sex" value="男性">男性
+        <input type="radio" name="sex" value="女性">女性</p>
+
+      <button type="submit" class="btn btn-primary" name="submit_button">検索</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}
