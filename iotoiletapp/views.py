@@ -29,24 +29,12 @@ group by floor_name;
 
 
 def index(request):
+    form = IotoiletappForm(request.GET or None)
     with psycopg2.connect(CONN) as conn, conn.cursor() as cur:
         cur.execute(SQL_AVAILABLE_TOILETS, {})
         available_toilets = cur.fetchall()
-        while available_toilets != None:
-            if available_toilets[5] < 3:
-                available_toilets[3] = "空"
-            elif available_toilets[5] > 3:
-                available_toilets[3] = "使用中"
-            else:
-                available_toilets[3] = "---"
-    available_toilets = available_toilets or [
-        (i, i + 1, i + 2) for i in range(10)]
-    return render(request, 'iotoiletapp/index.html', {'available_toilets': available_toilets})
-
-
-def search(request):
-    form = IotoiletappForm(request.GET or None)
-    return render(request, 'iotoiletapp/search.html', {"form": form})
+    available_toilets = available_toilets or [(i, i + 1, i + 2) for i in range(10)]
+    return render(request, 'iotoiletapp/index.html', {'available_toilets': available_toilets, 'form': form})
 
 # def detail(request, id=None):
 #     toilet = Iotoiletapp.objects.get(floor_no=floor_no)
