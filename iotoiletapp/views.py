@@ -33,7 +33,6 @@ def index(request):
     with psycopg2.connect(CONN) as conn, conn.cursor() as cur:
         cur.execute(SQL_AVAILABLE_TOILETS, {})
         available_toilets = cur.fetchall()
-    available_toilets = available_toilets or [(i, i + 1, i + 2) for i in range(10)]
     return render(request, 'iotoiletapp/index.html', {'available_toilets': available_toilets, 'form': form})
 
 # def detail(request, id=None):

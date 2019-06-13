@@ -24,7 +24,9 @@ SECRET_KEY = 'sn*(57x5=$nn_=wf4t7(r8ci8qx7k8)do%m1vk7yb+a+v=+ih1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-13-231-41-34.ap-northeast-1.compute.amazonaws.com', 'localhost']
+ALLOWED_HOSTS = ['ec2-13-231-41-34.ap-northeast-1.compute.amazonaws.com',  # stage
+                 'ec2-3-112-7-251.ap-northeast-1.compute.amazonaws.com',  # prod
+                 '127.0.0.1', 'localhost']
 
 # Application definition
 
