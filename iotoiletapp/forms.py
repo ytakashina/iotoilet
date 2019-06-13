@@ -16,4 +16,4 @@ FLOOR_CHOICES = [
 
 class IotoiletappForm(forms.Form):
     sex = forms.ChoiceField(label='性別', choices=SEX_CHOICES, initial=1)
-    floor_name = forms.ChoiceField(label='フロア', choices=FLOOR_CHOICES, initial=1)
+    floor = forms.ChoiceField(label='フロア', choices=FLOOR_CHOICES, initial=1)
