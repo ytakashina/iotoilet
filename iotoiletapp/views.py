@@ -1,7 +1,7 @@
 import psycopg2
 from django.shortcuts import render
-
 from iotoiletapp.forms import IotoiletappForm
+from .models import Floor, Sex
 
 CONN = "host=ytakashina.cp12crxu8zls.ap-northeast-1.rds.amazonaws.com" + \
        " port=5432 dbname=postgres user=postgres password=postgres"
@@ -35,6 +35,11 @@ def index(request):
         available_toilets = cur.fetchall()
     return render(request, 'iotoiletapp/index.html', {'available_toilets': available_toilets, 'form': form})
 
-# def detail(request, id=None):
-#     toilet = Iotoiletapp.objects.get(floor_no=floor_no)
-#     return render(request, 'iotoiletapp/detail.html', {'toilet': toilet})
+def detail(request):
+
+    floor_id = request.GET.get("floor_id")
+    sex_id = request.GET.get("sex_id")
+    # sex = Sex.objects.get(id=sex_id)
+    # floor = Floor.objects.get(id=floor_id)
+    # toilet = Toilet.objects.get(floor_no=)
+    return render(request, 'iotoiletapp/detail.html', {'floor_id': floor_id, "sex_id": sex_id})
