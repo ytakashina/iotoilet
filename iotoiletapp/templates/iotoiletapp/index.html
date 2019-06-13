@@ -38,7 +38,7 @@
                 <tbody>
                 {% for available_toilet in available_toilets %}
                     <tr>
-                        <!-- 今回は各階の個室の全体数は直接書き込んだがデータベースから持ってくる方がよさそう -->>
+                        <!-- 今回は各階の個室の全体数は直接書き込んだがデータベースから持ってくる方がよさそう -->
                         <th>{{ available_toilet.0 }}</th>
                         {% if available_toilet.1 == 0 %}
                         <td class="danger">
