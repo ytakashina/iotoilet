@@ -27,13 +27,42 @@ from (
 group by floor_name;
 """
 
+SQL_SEARCH = """
+select 
+        F.id, 
+        F.floor_name, 
+        T.id, 
+        RT.room_type_name, 
+        RT.id, 
+        T.toilet_name, 
+        SD.timestamp, 
+        SD.value1 
+    from 
+        iotoiletapp_sensordata as SD
+        left outer join iotoiletapp_sensor as S
+        on S.id = SD.sensor_id_id
+        left outer join iotoiletapp_toilet as T on S.toilet_id_id = T.id
+        left outer join iotoiletapp_room as R on T.room_id_id = R.id
+        left outer join iotoiletapp_roomtype as RT on R.room_type_id_id = RT.id
+        left outer join iotoiletapp_floor as F on F.id = R.floor_id_id
+    where 
+        (sensor_id_id, timestamp) in (select sensor_id_id, max(timestamp) 
+        from iotoiletapp_sensordata
+    and
+        F.id = %{floor_id}s
+    and 
+        RT.id = %{sex_id}s
+group by sensor_id_id)
+"""
+
 
 def index(request):
     form = IotoiletappForm(request.GET or None)
     with psycopg2.connect(CONN) as conn, conn.cursor() as cur:
         cur.execute(SQL_AVAILABLE_TOILETS, {})
         available_toilets = cur.fetchall()
-    available_toilets = available_toilets or [(i, i + 1, i + 2) for i in range(10)]
+    available_toilets = available_toilets or [
+        (i, i + 1, i + 2) for i in range(10)]
     return render(request, 'iotoiletapp/index.html', {'available_toilets': available_toilets, 'form': form})
 
 # def detail(request, id=None):
