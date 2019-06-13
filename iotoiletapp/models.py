@@ -76,7 +76,7 @@ class Sensor(models.Model):
 
 
 class SensorData(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField()
     sensor_id = models.ForeignKey('Sensor', on_delete=models.PROTECT)
     value1 = models.CharField("センサー値1", max_length=20, blank=True)
     value2 = models.CharField("センサー値2", max_length=20, blank=True)
@@ -120,7 +120,7 @@ class RoomType(models.Model):
 
 
 class Room(models.Model):
-    room_type_id = models.ForeignKey('SexRoomType', on_delete=models.SET_NULL, null=True)
+    room_type_id = models.ForeignKey('RoomType', on_delete=models.SET_NULL, null=True)
     floor_id = models.ForeignKey('Floor', on_delete=models.PROTECT)
     room_name = models.CharField("個室名", max_length=20)
     room_no = models.IntegerField("個室番号", default=-1)
