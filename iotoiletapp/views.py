@@ -29,13 +29,6 @@ group by floor_name;
 
 SQL_SEARCH = """
 select 
-        F.id, 
-        F.floor_name, 
-        T.id, 
-        RT.room_type_name, 
-        RT.id, 
-        T.toilet_name, 
-        SD.timestamp, 
         SD.value1 
     from 
         iotoiletapp_sensordata as SD
@@ -54,6 +47,13 @@ select
         RT.id = %{sex_id}s
 group by sensor_id_id)
 """
+
+def search(request):
+    form = IotoiletappForm(request.GET or None)
+    with psycopg2.connect(CONN) as conn, conn.cursor() as cur:
+        cur.execute(SQL_SEARCH, {"floor_id" : floor_id, "sex_id" : sex_id})
+        search_toilets = cur.fetchall()
+    return render(request, 'iotoiletapp/index.html', {'available_toilets': available_toilets, 'form': form})
 
 
 def index(request):
