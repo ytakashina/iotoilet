@@ -6,6 +6,20 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-12">
+            <h3 class="page-header">フロアと性別を入力してください</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form action="{% url 'index' %}" method="get" name="search_form">
+                {{ form }} <br>
+                <button type="submit" class="btn btn-primary">検索</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col">
             <h3>トイレ利用状況一覧</h3>
         </div>
@@ -34,3 +48,4 @@
         </div>
     </div>
 {% endblock content %}
+
