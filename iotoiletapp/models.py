@@ -88,7 +88,7 @@ class SensorData(models.Model):
         unique_together = (('timestamp', 'sensor_id'),)
 
     def __str__(self):
-        return str(self.sensor_id)
+        return str(self.sensor_id) + " " + str(self.timestamp)
 
 
 class Sex(models.Model):
