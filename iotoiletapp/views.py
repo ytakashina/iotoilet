@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 from iotoiletapp.forms import IotoiletappForm
 
-CONN = "host=ytakashina.cp12crxu8zls.ap-northeast-1.rds.amazonaws.com" + \
+CONN = "host=iwata36791.cp12crxu8zls.ap-northeast-1.rds.amazonaws.com" + \
        " port=5432 dbname=postgres user=postgres password=postgres"
 
 SQL_AVAILABLE_TOILETS = """

@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'ytakashina.cp12crxu8zls.ap-northeast-1.rds.amazonaws.com',
+        'HOST': 'iwata36791.cp12crxu8zls.ap-northeast-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
