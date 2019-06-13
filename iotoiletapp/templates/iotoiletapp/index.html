@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="{% url 'index' %}" method="get" name="search_form">
+            <form action="{% url 'detail' %}" method="get" name="search_form">
                 {{ form }} <br>
                 <button type="submit" class="btn btn-primary">検索</button>
             </form>
@@ -30,9 +30,8 @@
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th>フロア</th>
-                    <th>利用状況（男性）</th>
-                    <th>利用状況（女性）</th>
+                    <th>{{ floor }}</th>
+                    <th>{{ sex }}</th>
                 </tr>
                 </thead>
                 <tbody>
